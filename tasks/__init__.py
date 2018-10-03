@@ -1,0 +1,3 @@
+from ImageCaptionRetrievalTask import ImageCaptionRetrievalTask
+from LanguageInferenceTask import LanguageInferenceTask
+from TextClassificationTask import TextClassificationTask

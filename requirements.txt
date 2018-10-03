@@ -1,0 +1,7 @@
+torch>=0.4.1
+torchtext>=0.2.3
+torchvision>=0.2.1
+numpy>=1.14.0
+spacy>=2.0.11
+jsonlines
+tqdm
