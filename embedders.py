@@ -136,13 +136,14 @@ class CatEmbedder(nn.Module):
         self.embedders = nn.ModuleDict({
             name: SingleEmbedder(args, logger, path, dim) for name, path, dim in args.embeds
         })
+        self.dropout = nn.Dropout(p=args.emb_dropout)
 
     def forward(self, words):
         out = torch.cat([self.embedders[name](words) for name in self.emb_names], -1)
         if self.args.nonlin == 'relu':
             out = F.relu(out)
         if self.args.emb_dropout > 0.0:
-            out = F.dropout(out, p=self.args.emb_dropout)
+            out = self.dropout(out)
         return out
 
 
@@ -177,6 +178,8 @@ class ProjSumEmbedder(nn.Module):
                 self.attn_1 = nn.Linear(2, 1)
                 nn_init(self.attn_1, 'xavier')
 
+        self.dropout = nn.Dropout(p=args.emb_dropout)
+
     def forward(self, words):
         projected = [self.projectors[name](self.embedders[name](words)) for name in self.emb_names]
 
@@ -205,5 +208,5 @@ class ProjSumEmbedder(nn.Module):
         if self.args.nonlin == 'relu':
             out = F.relu(out)
         if self.args.emb_dropout > 0.0:
-            out = F.dropout(out, p=self.args.emb_dropout)
+            out = self.dropout(out)
         return out
