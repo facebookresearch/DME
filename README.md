@@ -1,5 +1,5 @@
 # Dynamic Meta-Embeddings for Improved Sentence Representations
-Code and models for the paper [Dynamic Meta-Embeddings for Improved Sentence Representations](https://arxiv.org/pdf/1804.07983.pdf).
+Code and models for the paper [Dynamic Meta-Embeddings for Improved Sentence Representations](https://arxiv.org/abs/1804.07983).
 
 ## Requirements
 
