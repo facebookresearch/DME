@@ -11,23 +11,24 @@ Code and models for the paper [Dynamic Meta-Embeddings for Improved Sentence Rep
 * NumPy >= 1.14.0
 * jsonlines
 * tqdm
+* six
 
 ## Getting started
 
 ### Downloading the data
 First, you should get pre-trained embeddings and pre-processed datasets in place. For embeddings, run
 ```bash
-python data_utils/get_embeddings.py --embeds fasttext,glove
+python get_embeddings.py --embeds fasttext,glove
 ```
 (An example for fasttext and glove. Available embeddings are fasttext, fasttext_wiki, fasttext_opensubtitles, fasttext_torontobooks, glove, levy_bow2 and imagenet.)
 
 For Flickr30k dataset, run
 ```bash
-python data_utils/get_flickr30k.py --flickr30k_root './data/flickr30k' --batch_size 32
+python get_flickr30k.py --flickr30k_root './data/flickr30k' --batch_size 32
 ```
 with specified batch size for image feature extraction and Flickr30k root folder that includes `dataset_flickr30k.json` and `images` subfolder for all images.
 
-For SNLI/MultiNLI/SST dataset, run `data_utils/get_snli.py`, `data_utils/get_multinli.py` and `data_utils/get_sst2.py`, respectively.
+For SNLI/MultiNLI/SST dataset, run `get_snli.py`, `get_multinli.py` and `get_sst2.py`, respectively.
 
 The downloaded embedding and datasets will be located at `./data/embeddings` and `./data/datasets`, respectively.
 ### Training the models
@@ -97,7 +98,7 @@ python train.py --task snli \
 ```
 ### Allowing more types of embeddings
 To allow using new types of embeddings in training, put the embedding files into `data/embeddings`. Then update the
- `embeddings` list in `data_utils/embeddings.py` with a new tuple per new type of embeddings. Each tuple will provide the id of the 
+ `embeddings` list in `dme/embeddings.py` with a new tuple per new type of embeddings. Each tuple will provide the id of the 
  embeddings, the embedding filename, the dimensionality, a description and the downloading URL (optional). 
 
 ### Pre-trained models

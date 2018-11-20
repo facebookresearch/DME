@@ -15,15 +15,15 @@ import torch.nn as nn
 
 import numpy as np
 
-from encoders import SentEncoder
-from tasks.BaseTask import BaseTask, get_optimizer_scheduler, count_param_num, nn_init
+from dme.encoders import SentEncoder
+from dme.tasks.base import BaseTask, get_optimizer_scheduler, count_param_num, nn_init
 
 
-class TextClassificationTask(BaseTask):
+class NaturalLanguageInferenceTask(BaseTask):
     def __init__(self, args, logger):
-        super(TextClassificationTask, self).__init__(args, logger)
+        super(NaturalLanguageInferenceTask, self).__init__(args, logger)
 
-        self.model = TextClassificationModel(args, logger).cuda()
+        self.model = LanguageInferenceModel(args, logger).cuda()
         self.criterion = nn.CrossEntropyLoss(reduction='sum')
         self.optimizer, self.scheduler = get_optimizer_scheduler(args, self.model.parameters())
 
@@ -40,7 +40,7 @@ class TextClassificationTask(BaseTask):
         answer = self.model(batch)
         loss = self.criterion(answer, (batch.label - 1))
 
-        n_correct = (answer.max(1)[1].view(batch.label.size()).data == (batch.label.data - 1)).sum()
+        n_correct = (torch.max(answer, 1)[1].view(batch.label.size()).data == (batch.label.data - 1)).sum()
         self.epoch_train_stats['n_correct'] += float(n_correct.item())
         self.epoch_train_stats['n_total'] += batch.batch_size
         self.epoch_train_stats['loss'].append(loss.item() / batch.batch_size)
@@ -78,13 +78,13 @@ class TextClassificationTask(BaseTask):
         return stats['acc'], stats
 
 
-class TextClassificationModel(nn.Module):
+class LanguageInferenceModel(nn.Module):
     def __init__(self, args, logger):
-        super(TextClassificationModel, self).__init__()
+        super(LanguageInferenceModel, self).__init__()
         self.args = args
         self.encoder = SentEncoder(args, logger)
         self.classifier = nn.Sequential(
-            nn.Linear(2 * args.rnn_dim, args.fc_dim),
+            nn.Linear(4 * 2 * args.rnn_dim, args.fc_dim),
             nn.ReLU(),
             nn.Dropout(p=args.clf_dropout),
             nn.Linear(args.fc_dim, args.fc_dim),
@@ -97,7 +97,9 @@ class TextClassificationModel(nn.Module):
         self.report_model_size(logger)
 
     def forward(self, batch):
-        return self.classifier(self.encoder(batch.text[0], batch.text[1]))
+        u = self.encoder(batch.premise[0], batch.premise[1])
+        v = self.encoder(batch.hypothesis[0], batch.hypothesis[1])
+        return self.classifier(torch.cat([u, v, (u - v).abs(), u * v], 1))
 
     def report_model_size(self, logger):
         logger.info('model size: {:,}'.format(count_param_num(self)))

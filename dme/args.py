@@ -15,8 +15,7 @@ from datetime import datetime
 import os
 import copy
 
-from data_utils.embeddings import embeddings
-
+from dme.embeddings import embeddings
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--name', type=str, default='{:%Y_%m_%d_%H_%M_%S}'.format(datetime.now()), help='experiment name')
@@ -66,7 +65,8 @@ args = copy.deepcopy(raw_args)
 
 
 def get_available_embeddings(args):
-    return [(emb_id, os.path.join(args.embeds_root, fn), dim) for emb_id, fn, dim, description, url in embeddings]
+    return [(emb_id, os.path.join(args.embeds_root, fn), dim) for emb_id, fn, dim, description, url in
+            embeddings]
 
 
 def preprocess(opt):

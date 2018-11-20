@@ -13,8 +13,8 @@ from __future__ import unicode_literals
 import torch
 import torch.nn as nn
 
-from embedders import CatEmbedder, ProjSumEmbedder
-from tasks.BaseTask import nn_init
+from dme.embedders import CatEmbedder, ProjSumEmbedder
+from dme.tasks.base import nn_init
 
 
 def get_embedder(args, logger):

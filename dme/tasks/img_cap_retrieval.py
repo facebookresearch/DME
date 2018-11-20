@@ -20,8 +20,8 @@ import torch.nn as nn
 import torchvision.models
 from torch.autograd import Variable
 
-from encoders import SentEncoder
-from tasks.BaseTask import BaseTask, get_optimizer_scheduler, count_param_num, normf, nn_init
+from dme.encoders import SentEncoder
+from dme.tasks.base import BaseTask, get_optimizer_scheduler, count_param_num, normf, nn_init
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 cudnn.benchmark = True

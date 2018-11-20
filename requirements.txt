@@ -5,3 +5,4 @@ numpy>=1.14.0
 spacy>=2.0.11
 jsonlines
 tqdm
+six

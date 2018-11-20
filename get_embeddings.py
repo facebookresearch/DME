@@ -13,7 +13,7 @@ from __future__ import unicode_literals
 import os
 import argparse
 
-from embeddings import embeddings
+from dme.embeddings import embeddings
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--embeds', type=str, default='fasttext,glove', help='embeddings to download')

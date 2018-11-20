@@ -12,14 +12,14 @@ from __future__ import unicode_literals
 
 import os
 import codecs
-import cPickle as pickle
+from six.moves import cPickle as pickle
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math
 
-from tasks.BaseTask import nn_init
+from dme.tasks.base import nn_init
 
 
 def load_cached_pretrained_embeddings(logger, emb_path, cache_path, emb_size):

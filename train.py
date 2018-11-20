@@ -19,14 +19,16 @@ import numpy as np
 import torch
 from torchtext import data
 
-from args import args
-from logger import create_logger
-from tasks import ImageCaptionRetrievalTask, LanguageInferenceTask, TextClassificationTask
-from embedders import get_embeds_vocab, get_emb_key
-from tasks.BaseTask import get_lr
-from datasets.NLIDataset import SNLIDataset, MultiNLIDataset, AllNLIDataset
-from datasets.ImageCaptionDataset import ImageCaptionDataset
-from datasets.SST2Dataset import SST2Dataset
+from dme.args import args
+from dme.logger import create_logger
+from dme.tasks.base import get_lr
+from dme.tasks.nli import NaturalLanguageInferenceTask
+from dme.tasks.text_classification import TextClassificationTask
+from dme.tasks.img_cap_retrieval import ImageCaptionRetrievalTask
+from dme.embedders import get_embeds_vocab, get_emb_key
+from dme.datasets.nli import SNLIDataset, MultiNLIDataset, AllNLIDataset
+from dme.datasets.img_cap_retrieval import ImageCaptionDataset
+from dme.datasets.sst import SST2Dataset
 
 random.seed(args.seed)
 np.random.seed(args.seed)
@@ -152,7 +154,7 @@ def main():
     assert args.report_freq < len(train_iter)
 
     if args.task in {'snli', 'multinli', 'allnli'}:
-        task = LanguageInferenceTask(args, logger)
+        task = NaturalLanguageInferenceTask(args, logger)
     elif args.task in {'flickr30k'}:
         task = ImageCaptionRetrievalTask(args, logger)
     elif args.task in {'sst2'}:

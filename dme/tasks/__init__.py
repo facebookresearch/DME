@@ -5,6 +5,3 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-from ImageCaptionRetrievalTask import ImageCaptionRetrievalTask
-from LanguageInferenceTask import LanguageInferenceTask
-from TextClassificationTask import TextClassificationTask
