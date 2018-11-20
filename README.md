@@ -3,7 +3,7 @@ Code and models for the paper [Dynamic Meta-Embeddings for Improved Sentence Rep
 
 ## Requirements
 
-* Python 2.7
+* Python 2.7 or 3.6+
 * PyTorch >= 0.4.1
 * torchtext >= 0.2.3
 * torchvision >= 0.2.1
