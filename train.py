@@ -171,7 +171,7 @@ def main():
     else:
         starting_epoch = 1
 
-    for epoch in range(starting_epoch, args.max_epochs):
+    for epoch in range(starting_epoch, args.max_epochs + 1):
         logger.info('Current learning rate %.8f' % get_lr(task.optimizer))
 
         if hasattr(train_iter, 'init_epoch'):
