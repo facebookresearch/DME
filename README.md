@@ -105,24 +105,24 @@ To allow using new types of embeddings in training, put the embedding files into
 ##### SNLI
 ```--batch_sz 64 --clf_dropout 0.2 --lr 0.0004 --lr_min 0.00008 --emb_dropout 0.2 --proj_embed_sz 256 --embeds fasttext,glove --rnn_dim 512 --fc_dim 1024```
 
-[DME](https://s3.amazonaws.com/fair-dme/snli_dme.checkpoint) (Accuracy: 86.9096%) / [CDME](https://s3.amazonaws.com/fair-dme/snli_cdme.checkpoint) (Accuracy: 86.6042%)
+[DME](https://dl.fbaipublicfiles.com/dme/snli_dme.checkpoint) (Accuracy: 86.9096%) / [CDME](https://dl.fbaipublicfiles.com/dme/snli_cdme.checkpoint) (Accuracy: 86.6042%)
 ##### MultiNLI
 ```--batch_sz 64 --clf_dropout 0.2 --lr 0.0004 --lr_min 0.00008 --emb_dropout 0.2 --proj_embed_sz 256 --embeds fasttext,glove --rnn_dim 512 --fc_dim 1024```
 
-[DME](https://s3.amazonaws.com/fair-dme/multinli_dme.checkpoint) (Accuracy: 74.3084%) / [CDME](https://s3.amazonaws.com/fair-dme/multinli_cdme.checkpoint) (Accuracy: 74.7152%)
+[DME](https://dl.fbaipublicfiles.com/dme/multinli_dme.checkpoint) (Accuracy: 74.3084%) / [CDME](https://dl.fbaipublicfiles.com/dme/multinli_cdme.checkpoint) (Accuracy: 74.7152%)
 ##### SST2
 ```--batch_sz 64 --clf_dropout 0.5 --lr 0.0004 --lr_min 0.00005 --emb_dropout 0.5 --proj_embed_sz 256 --embeds fasttext,glove --rnn_dim 512 --fc_dim 512``` 
 
-[DME](https://s3.amazonaws.com/fair-dme/sst2_dme.checkpoint) (Accuracy: 89.5113%) / [CDME](https://s3.amazonaws.com/fair-dme/sst2_cdme.checkpoint) (Accuracy: 88.1933%)
+[DME](https://dl.fbaipublicfiles.com/dme/sst2_dme.checkpoint) (Accuracy: 89.5113%) / [CDME](https://dl.fbaipublicfiles.com/dme/sst2_cdme.checkpoint) (Accuracy: 88.1933%)
 ##### Flickr30k
 ```--batch_sz 128 --clf_dropout 0.1 --early_stop_patience 5 --lr 0.0003 --lr_min 0.00005 --scheduler_patience 1 --emb_dropout 0.1 --proj_embed_sz 256 --embeds fasttext,imagenet --rnn_dim 1024 --fc_dim 512 --img_cropping rc```
 
-[DME](https://s3.amazonaws.com/fair-dme/flickr30k_dme.checkpoint) (Cap/Img R@1=47.3/33.12, R@10=80.9/73.44) / [CDME](https://s3.amazonaws.com/fair-dme/flickr30k_cdme.checkpoint) (Cap/Img R@1=48.2/34.5, R@10=82.3/73.58) 
+[DME](https://dl.fbaipublicfiles.com/dme/flickr30k_dme.checkpoint) (Cap/Img R@1=47.3/33.12, R@10=80.9/73.44) / [CDME](https://dl.fbaipublicfiles.com/dme/flickr30k_cdme.checkpoint) (Cap/Img R@1=48.2/34.5, R@10=82.3/73.58) 
 
 ##### AllNLI
 ```--batch_sz 64 --clf_dropout 0.2 --lr 0.0004 --lr_min 0.00008 --emb_dropout 0.2 --proj_embed_sz 256 --embeds fasttext,glove --rnn_dim 2048 --fc_dim 1024```
 
-[DME](https://s3.amazonaws.com/fair-dme/allnli_dme.checkpoint) (Accuracy: 80.2757%) / [CDME](https://s3.amazonaws.com/fair-dme/allnli_cdme.checkpoint) (Accuracy: 80.4742%)
+[DME](https://dl.fbaipublicfiles.com/dme/allnli_dme.checkpoint) (Accuracy: 80.2757%) / [CDME](https://dl.fbaipublicfiles.com/dme/allnli_cdme.checkpoint) (Accuracy: 80.4742%)
 
 ## Reference
 Please cite the following paper if you find this code useful in your research:
